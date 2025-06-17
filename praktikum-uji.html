@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praktikum: Uji Aktivitas Enzim</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #eef7fa;
+      margin: 0;
+      padding: 0;
+      color: #2b3e50;
+    }
+
+    header {
+      background-color: #0288d1;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .select-group {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    select, input[type=number] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .output {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #e1f5fe;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #01579b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Praktikum Virtual</h1>
+    <p>Uji Aktivitas Enzim</p>
+  </header>
+
+  <div class="container">
+    <h2>Simulasi</h2>
+    <p>Pilih jenis enzim dan kondisi uji untuk melihat aktivitasnya.</p>
+
+    <div class="select-group">
+      <label for="enzim">Jenis Enzim:</label>
+      <select id="enzim">
+        <option value="amilase">Amilase</option>
+        <option value="protease">Protease</option>
+        <option value="lipase">Lipase</option>
+      </select>
+
+      <label for="konsentrasi">Konsentrasi Enzim (mg/ml):</label>
+      <input type="number" id="konsentrasi" min="1" max="100" value="10">
+    </div>
+
+    <button onclick="ujiAktivitas()">Lakukan Uji</button>
+
+    <div class="output" id="output">
+      Hasil uji akan ditampilkan di sini.
+    </div>
+
+    <button onclick="history.back()">Kembali ke Menu</button>
+  </div>
+
+  <script>
+    function ujiAktivitas() {
+      const enzim = document.getElementById('enzim').value;
+      const konsentrasi = parseInt(document.getElementById('konsentrasi').value);
+      let aktivitas = konsentrasi * (Math.random() * 2 + 0.5);
+      aktivitas = Math.round(aktivitas * 10) / 10;
+
+      const output = document.getElementById('output');
+      output.textContent = `Aktivitas enzim ${enzim} pada konsentrasi ${konsentrasi} mg/ml adalah ${aktivitas} unit.`;
+    }
+  </script>
+</body>
+</html>

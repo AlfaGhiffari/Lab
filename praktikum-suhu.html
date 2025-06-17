@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praktikum: Pengaruh Suhu terhadap Aktivitas Enzim</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff8e1;
+      margin: 0;
+      padding: 0;
+      color: #4e342e;
+    }
+
+    header {
+      background-color: #f57c00;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .temp-slider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    input[type=range] {
+      width: 100%;
+    }
+
+    .output {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #ffe0b2;
+    }
+
+    .enzyme-activity {
+      height: 20px;
+      margin-top: 1rem;
+      background: #ffcc80;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enzyme-bar {
+      height: 100%;
+      background: #f57c00;
+      transition: width 0.4s ease-in-out;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Praktikum Virtual</h1>
+    <p>Pengaruh Suhu terhadap Aktivitas Enzim</p>
+  </header>
+
+  <div class="container">
+    <h2>Simulasi</h2>
+    <p>Geser slider untuk mengubah suhu dan lihat bagaimana aktivitas enzim dipengaruhi.</p>
+
+    <div class="temp-slider">
+      <label for="temp">Suhu (°C):</label>
+      <input type="range" id="temp" name="temp" min="0" max="100" value="37" oninput="updateTemp(this.value)">
+      <span id="tempValue">37</span>
+    </div>
+
+    <div class="output" id="tempOutput">
+      Aktivitas Enzim Optimal pada Suhu 37°C
+    </div>
+
+    <div class="enzyme-activity">
+      <div class="enzyme-bar" id="enzymeBar" style="width: 100%"></div>
+    </div>
+
+    <button onclick="history.back()">Kembali ke Menu</button>
+  </div>
+
+  <script>
+    function updateTemp(temp) {
+      document.getElementById('tempValue').textContent = temp;
+      let bar = document.getElementById('enzymeBar');
+      let output = document.getElementById('tempOutput');
+
+      let activity;
+      if (temp <= 10 || temp >= 70) {
+        activity = 5;
+        output.textContent = 'Aktivitas Enzim Hampir Tidak Ada pada Suhu ' + temp + '°C';
+      } else if (temp >= 35 && temp <= 40) {
+        activity = 100;
+        output.textContent = 'Aktivitas Enzim Optimal pada Suhu ' + temp + '°C';
+      } else {
+        activity = 100 - Math.abs(37 - temp) * 3;
+        output.textContent = 'Aktivitas Enzim Menurun pada Suhu ' + temp + '°C';
+      }
+      bar.style.width = activity + '%';
+    }
+  </script>
+</body>
+</html>

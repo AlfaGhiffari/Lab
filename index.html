@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Virtual Lab Enzim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    :root {
+      --primary: #009688;
+      --secondary: #e0f2f1;
+      --bg: #f5fafa;
+      --text-dark: #004d40;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-dark);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .praktikum-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+
+    .card i {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--primary);
+      color: white;
+      margin-top: 4rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Virtual Lab Enzim</h1>
+    <p>Simulasi Praktikum Interaktif Biologi Molekuler</p>
+  </header>
+
+  <div class="container">
+    <h2>Pilih Praktikum</h2>
+    <div class="praktikum-grid">
+      <div class="card" onclick="window.location.href='praktikum-ph.html'">
+        <i data-feather="activity"></i>
+        <h3>1. Pengaruh pH</h3>
+        <p>Eksplorasi bagaimana pH mengubah efektivitas enzim.</p>
+      </div>
+      <div class="card" onclick="window.location.href='praktikum-suhu.html'">
+        <i data-feather="thermometer"></i>
+        <h3>2. Pengaruh Suhu</h3>
+        <p>Simulasi peningkatan dan penurunan suhu terhadap reaksi enzimatik.</p>
+      </div>
+      <div class="card" onclick="window.location.href='praktikum-uji.html'">
+        <i data-feather="flask"></i>
+        <h3>3. Uji Aktivitas Enzim</h3>
+        <p>Uji eksperimen untuk mengukur tingkat aktivitas enzim.</p>
+      </div>
+      <div class="card" onclick="window.location.href='praktikum-substrat.html'">
+        <i data-feather="layers"></i>
+        <h3>4. Enzim & Substrat</h3>
+        <p>Amati pengaruh jumlah substrat terhadap reaksi enzim.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; Virtual Lab Biologi | Zahwa Ayu
+  </footer>
+
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

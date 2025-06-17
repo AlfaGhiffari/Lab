@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praktikum: Pengaruh pH terhadap Aktivitas Enzim</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f2fefb;
+      margin: 0;
+      padding: 0;
+      color: #004d40;
+    }
+
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .ph-slider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    input[type=range] {
+      width: 100%;
+    }
+
+    .output {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #e0f2f1;
+    }
+
+    .enzyme-activity {
+      height: 20px;
+      margin-top: 1rem;
+      background: #b2dfdb;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enzyme-bar {
+      height: 100%;
+      background: #00796b;
+      transition: width 0.4s ease-in-out;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Praktikum Virtual</h1>
+    <p>Pengaruh pH terhadap Aktivitas Enzim</p>
+  </header>
+
+  <div class="container">
+    <h2>Simulasi</h2>
+    <p>Geser slider untuk mengubah nilai pH dan amati bagaimana aktivitas enzim berubah.</p>
+
+    <div class="ph-slider">
+      <label for="ph">pH: </label>
+      <input type="range" id="ph" name="ph" min="1" max="14" value="7" oninput="updateActivity(this.value)">
+      <span id="phValue">7</span>
+    </div>
+
+    <div class="output" id="activityOutput">
+      Aktivitas Enzim Optimal pada pH Netral (7)
+    </div>
+
+    <div class="enzyme-activity">
+      <div class="enzyme-bar" id="enzymeBar" style="width: 100%"></div>
+    </div>
+
+    <button onclick="history.back()">Kembali ke Menu</button>
+  </div>
+
+  <script>
+    function updateActivity(ph) {
+      document.getElementById('phValue').textContent = ph;
+      let bar = document.getElementById('enzymeBar');
+      let output = document.getElementById('activityOutput');
+
+      let activity = 100 - Math.abs(7 - ph) * 12; // Simplified model
+      activity = Math.max(activity, 5);
+      bar.style.width = activity + '%';
+
+      if (ph == 7) {
+        output.textContent = 'Aktivitas Enzim Optimal pada pH Netral (7)';
+      } else if (ph < 4 || ph > 10) {
+        output.textContent = 'Aktivitas Enzim Sangat Rendah pada pH ' + ph;
+      } else {
+        output.textContent = 'Aktivitas Enzim Menurun pada pH ' + ph;
+      }
+    }
+  </script>
+</body>
+</html>
